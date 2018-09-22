@@ -8,7 +8,7 @@ dynamic_array * init_array(){
 	
 	my_array ->size=0;
 	my_array->capacity=20;
-	my_array->ptr_addr=(int*)malloc(sizeof(int)*my_array->capacity);//int*ÊÇÇ¿ÖÆÀàĞÍ×ª»»¡£ 
+	my_array->ptr_addr=(int*)malloc(sizeof(int)*my_array->capacity);//int*æ˜¯å¼ºåˆ¶ç±»å‹è½¬æ¢ã€‚ 
 	
 	return my_array;
 }
@@ -16,54 +16,50 @@ void push_back_array(dynamic_array* arr,int value){
 	if (arr=NULL){
 		return;
 	}
-	//ÅĞ¶ÏÊÇ·ñ»¹ÓĞ¿Õ¼ä
+	//åˆ¤æ–­æ˜¯å¦è¿˜æœ‰ç©ºé—´
 	if(arr->size==arr->capacity){
-		//µÚÒ»²½£¬ÉêÇëÄÚ´æ¿Õ¼ä£¬ĞÂ¿Õ¼äÊÇÔ­¿Õ¼äµÄÁ½±¶¡£
+		//ç¬¬ä¸€æ­¥ï¼Œç”³è¯·å†…å­˜ç©ºé—´ï¼Œæ–°ç©ºé—´æ˜¯åŸç©ºé—´çš„ä¸¤å€ã€‚
 		int* new_space=malloc(sizeof(int)*arr->capacity*2);
-		//µÚ¶ş²½£¬¿½±´Êı¾İµ½ĞÂ¿Õ¼ä¡£ÓÃmemcpyº¯Êı¡£
-		memcpy(new_space,arr->ptr_addr,arr->capacity*sizeof(int));//ÒòÎª¿½±´µÄÊ±ºòÊÇÒÔ×Ö½ÚÎªµ¥Î»¡£ 
-		//µÚÈı²½£¬ÊÍ·Å¾É¿Õ¼äµÄÄÚ´æ¡£ 
+		//ç¬¬äºŒæ­¥ï¼Œæ‹·è´æ•°æ®åˆ°æ–°ç©ºé—´ã€‚ç”¨memcpyå‡½æ•°ã€‚
+		memcpy(new_space,arr->ptr_addr,arr->capacity*sizeof(int));//å› ä¸ºæ‹·è´çš„æ—¶å€™æ˜¯ä»¥å­—èŠ‚ä¸ºå•ä½ã€‚ 
+		//ç¬¬ä¸‰æ­¥ï¼Œé‡Šæ”¾æ—§ç©ºé—´çš„å†…å­˜ã€‚ 
 		free(arr->ptr_addr);
-		//µÚËÄ²½£¬¸üĞÂÈİÁ¿¡£
+		//ç¬¬å››æ­¥ï¼Œæ›´æ–°å®¹é‡ã€‚
 		arr->capacity=arr->capacity*2;
 		arr->ptr_addr=new_space; 
 	} 
-	//²åÈëĞÂÔªËØ
+	//æ’å…¥æ–°å…ƒç´ 
 	arr->capacity[arr->size]=value;
 	arr->size++; 
-
-
 }
 void remove_ByPos_array(dynamic_array* arr, int pos){
 	if(arr=NULL){
 		return;
 	}
-	//ÅĞ¶ÏÎ»ÖÃÊÇ·ñÓĞĞ§¡£
+	//åˆ¤æ–­ä½ç½®æ˜¯å¦æœ‰æ•ˆã€‚
 	if(pos<0||pos>=arr->size){
 		return;
 	} 
-	//É¾³ıÔªËØ¡£ÏÂ±ßÊÇsize-1£¬Èç¹û3¸öÊı¾İ£¬Î»ÖÃ´Ó0-2.Èç¹û²»¼õ1£¬×îºó»á°ÑÎ»ÖÃ3µÄÊı¾İ¸²¸Çµ½Î»ÖÃ2.µ«Î»ÖÃ3,2¶¼²»ÊôÓÚÎÒÁË¡£ 
+	//åˆ é™¤å…ƒç´ ã€‚ä¸‹è¾¹æ˜¯size-1ï¼Œå¦‚æœ3ä¸ªæ•°æ®ï¼Œä½ç½®ä»0-2.å¦‚æœä¸å‡1ï¼Œæœ€åä¼šæŠŠä½ç½®3çš„æ•°æ®è¦†ç›–åˆ°ä½ç½®2.ä½†ä½ç½®3,2éƒ½ä¸å±äºæˆ‘äº†ã€‚ 
 	for (i=pos;i<arr->size-1;i++){
 		arr->ptr_addr[i]=arr->ptr_addr[i+1];
 	} 
 	arr->size--; 
 	
-	
 }
-//¸ù¾İÖµÉ¾³ı£¬ÊÇÏÈÕÒµ½Õâ¸öÖµµÄÎ»ÖÃ£¬È»ºóÖ±½Óµ÷ÓÃ¸ù¾İÎ»ÖÃÉ¾³ıµÄ·½·¨¡£ 
+//æ ¹æ®å€¼åˆ é™¤ï¼Œæ˜¯å…ˆæ‰¾åˆ°è¿™ä¸ªå€¼çš„ä½ç½®ï¼Œç„¶åç›´æ¥è°ƒç”¨æ ¹æ®ä½ç½®åˆ é™¤çš„æ–¹æ³•ã€‚ 
 void remove_ByVal_array(dynamic_array* arr, int value){
 	if(arr=NULL){
 		return;
 	}
-	//ÕÒµ½ÖµµÄÎ»ÖÃ¡£
+	//æ‰¾åˆ°å€¼çš„ä½ç½®ã€‚
 	for(int i=0;i<arr->size;i++){
 		if(arr->ptr_addr[i]==value){
 			int	pos=i;
-			break;//ÕÒµ½Õâ¸öÖµµÚÒ»´Î³öÏÖµÄÎ»ÖÃ£¬È»ºó½øĞĞÉ¾³ı¡£ 
+			break;//æ‰¾åˆ°è¿™ä¸ªå€¼ç¬¬ä¸€æ¬¡å‡ºç°çš„ä½ç½®ï¼Œç„¶åè¿›è¡Œåˆ é™¤ã€‚ 
 		}
 	} 
 	remove_ByPos_array(arr,pos);
-	
 	
 }
 void find_array (dynamic_array * arr,int value){
@@ -97,7 +93,6 @@ void print_array(dynamic_array * arr){
 		printf("%d",arr->ptr_addr[i]);
 	}
 	printf("\n");
-	
 }
 
 void clear_array(dynamic_array * arr){
@@ -122,11 +117,6 @@ int size_array(dynamic_array* arr){
 	return arr->size;
 	
 }
-
-
-
-
-
 
 
 int main(int argc, char** argv) {
