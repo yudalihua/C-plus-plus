@@ -15,6 +15,16 @@ void MyPrint(CircularLinkNode* data){
     printf("name:%s,age:%d,score:%d",p->name,p->age,p->score);
     
 }
+
+int MyCompare(CircularLinkNode* data1,CircularLinkNode* data2){
+    MyNum* num1=(MyNum*) data1;
+    MyNum* num2=(MyNum*)data2;
+    if(num1->val==num2->val){
+        return CIRCULARLINKLIST_TRUE;
+    }
+    return CIRCULARLINKLIST_FALSE;
+}
+
 int main(void){
     //create circular link list.
     CircularLinkList* list=Init_CircularLinkList();
