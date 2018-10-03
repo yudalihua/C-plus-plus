@@ -106,7 +106,7 @@ int IsEmpty(LinkStack* stack){
 }
 
 //return the size of stack
-int Size_LinkStack(LinkStackk* stack){
+int Size_LinkStack(LinkStack* stack){
     if(stack==NULL){
         return -1;
     }
