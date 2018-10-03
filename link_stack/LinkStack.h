@@ -28,7 +28,7 @@ void* Top_LinkStack(LinkStack* stack);
 int IsEmpty(LinkStack* stack);
 
 //return the size of stack
-int Size_LinkStack(LinkStackk* stack);
+int Size_LinkStack(LinkStack* stack);
 
 //clear the stack
 void Clear_LinkStack(LinkStack* stack);
