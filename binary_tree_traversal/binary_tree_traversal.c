@@ -69,17 +69,11 @@ void CreateBinaryTree(){
     node6.rchild=&node7;
 
     node7.lchild=&node8;
-
-
 }
 
 
 int main(void){
     PreRecursion(&node1);
-    
-
-
-
-
+    return 0;
 
 }
