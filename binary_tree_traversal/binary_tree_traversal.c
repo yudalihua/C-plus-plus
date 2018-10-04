@@ -10,37 +10,37 @@ typedef struct BINARYNODE{
 }BinaryNode;
 
 //preorder traversal;
-void Recursion(BinaryNode* root){
+void PreRecursion(BinaryNode* root){
     //exit condition;
     if(root==NULL){
         return;
     }    
     printf("%c:",root->ch);
-    Recursion(root->lchild);
-    Recursion(root->rchild);
+    PreRecursion(root->lchild);
+    PreRecursion(root->rchild);
    
 }
 
 //inorder traversal;
-void Recursion(BinaryNode* root){
+void InRecursion(BinaryNode* root){
     //exit condition;
     if(root==NULL){
         return;
     }       
-    Recursion(root->lchild);
+    InRecursion(root->lchild);
     printf("%c:",root->ch);
-    Recursion(root->rchild);
+    InRecursion(root->rchild);
    
 }
 //postorder traversal;
 //inorder traversal;
-void Recursion(BinaryNode* root){
+void PostRecursion(BinaryNode* root){
     //exit condition;
     if(root==NULL){
         return;
     }       
-    Recursion(root->lchild);    
-    Recursion(root->rchild);
+    PostRecursion(root->lchild);    
+    PostRecursion(root->rchild);
     printf("%c:",root->ch);
    
 }
@@ -60,20 +60,17 @@ void CreateBinaryTree(){
     //create the relations between nodes;
     node1.lchild=&node2;
     node1.rchild=&node6;
-
     node2.rchild=&node3;
-
     node3.lchild=&node4;
     node3.rchild=&node5;
-
     node6.rchild=&node7;
-
     node7.lchild=&node8;
+    PreRecursion(&node1);   
+    
 }
 
 
-int main(void){
-    PreRecursion(&node1);
+int main(void){    
     return 0;
 
 }
